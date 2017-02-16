@@ -3,4 +3,4 @@ machine:
     - docker
 compile:
   override:
-  - scripts/create-base-images.sh
+  - bash -x scripts/create-base-images.sh
