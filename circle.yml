@@ -1,0 +1,6 @@
+machine:
+  services:
+    - docker
+compile:
+	override:
+	- bash -x scripts/create-base-images.sh
