@@ -7,6 +7,7 @@ vars() {
 }
 
 main() {
+	prepare
 	build "$@"
 }
 
@@ -33,9 +34,14 @@ clean_git() {
 		git commit -m "update $1 - $(date +%Y%m%d)"
 }
 
-build() {
+prepare() {
 	[[ ! -d temp ]] || rm -rf temp
 	[[ ! -d build ]] || rm -rf build
+	git config --global user.name "CircleCI"
+	git config --global user.email circleci@stei.gr
+}
+
+build() {
 	for image in $(images); do
 		git clone --branch "$image" "${GITHUB_DOCKER_IMAGES_REPO}" "build"
 		pushd build
