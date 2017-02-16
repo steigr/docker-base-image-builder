@@ -45,6 +45,7 @@ prepare() {
 
 build() {
 	for image in $(images); do
+		set +e
 		git clone --branch "$image" "${GITHUB_DOCKER_IMAGES_REPO}" "build"
 		pushd build
 		target="$(find * -name Makefile -exec dirname '{}' ';' | head -1)"
@@ -53,6 +54,7 @@ build() {
 		[[ "$DRY_RUN" ]] || git push -f origin "$image"
 		popd
 		rm -rf "build"
+		set -eo pipefail
 	done
 }
 
