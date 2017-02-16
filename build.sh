@@ -39,6 +39,7 @@ prepare() {
 	[[ ! -d build ]] || rm -rf build
 	git config --global user.name "CircleCI"
 	git config --global user.email circleci@stei.gr
+	ssh-add -L
 }
 
 build() {
