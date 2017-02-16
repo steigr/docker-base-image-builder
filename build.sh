@@ -11,7 +11,7 @@ main() {
 }
 
 images() {
-	 git ls-remote --refs "${GITHUB_DOCKER_IMAGES_REPO}" | awk '{print $2}' | cut -f3- -d/
+	 git ls-remote --refs "${GITHUB_DOCKER_IMAGES_REPO}" | awk '{print $2}' | cut -f3- -d/ | sort -n
 }
 
 create_image() {
