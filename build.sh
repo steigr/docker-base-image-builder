@@ -16,6 +16,7 @@ images() {
 
 create_image() {
 	make -C "$1" scratch
+	make -C "$1" Dockerfile
 }
 
 clean_git() {
