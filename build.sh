@@ -22,7 +22,7 @@ create_image() {
 clean_git() {
 		mkdir ../temp
 		mv * ../temp
-		git checkout master
+		git checkout -b master
 		git branch -D "$1"
 		git checkout --orphan "$1"
 		git rm --cached -r .
