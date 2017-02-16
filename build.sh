@@ -34,13 +34,15 @@ clean_git() {
 }
 
 build() {
+	[[ ! -d temp ]] || rm -rf temp
+	[[ ! -d build ]] || rm -rf build
 	for image in $(images); do
 		git clone --branch "$image" "${GITHUB_DOCKER_IMAGES_REPO}" "build"
 		pushd build
 		target="$(find * -name Makefile -exec dirname '{}' ';' | head -1)"
 		create_image "$target"
 		clean_git "$image"
-		git push -f origin "$image"
+		[[ "$DRY_RUN" ]] || git push -f origin "$image"
 		popd
 		rm -rf "build"
 	done
